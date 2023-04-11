@@ -9,7 +9,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -35,6 +37,17 @@ public class Customer implements Serializable {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createAt;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    private List<Invoice> invoices;
+
+    public Customer(){
+        invoices = new ArrayList<>();
+    }
+
+    public void addInvoice(Invoice invoice){
+        invoices.add(invoice);
+    }
 
     @Serial
     private static final long serialVersionUID = -4076903521346057017L;

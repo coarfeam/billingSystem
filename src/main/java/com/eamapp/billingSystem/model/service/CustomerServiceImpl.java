@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class CustomerServiceImpl implements ICustomerService{
 
-    private final ICustomerDao customerDao;
+    private ICustomerDao customerDao;
 
     public CustomerServiceImpl (ICustomerDao customerDao){
         this.customerDao = customerDao;
@@ -22,6 +22,7 @@ public class CustomerServiceImpl implements ICustomerService{
     }
 
     @Override
+    @Transactional
     public void saveCustomer(Customer customer) {
         customerDao.save(customer);
     }
