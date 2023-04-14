@@ -1,4 +1,4 @@
-# API RESTFULL INVENTORY
+# APLICACION DE SISTEMAS DE INVENTARIO
 
 En este proyecto se construira un proyecto de un sistema de facturación para la clase de apps empresarialres con el framework de Java, springboot y el motor de plantilla thymeleaf
 

@@ -1,10 +1,12 @@
 package com.eamapp.billingSystem.model.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
 
+@Data
 @Entity
 @Table(name = "item_invoice")
 public class ItemInvoice implements Serializable {

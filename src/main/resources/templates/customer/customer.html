@@ -58,8 +58,8 @@
                                     <td th:text="${customer.email}">Email</td>
                                     <td th:text="${customer.createAt}">Fecha de creación</td>
                                     <td>
-                                        <a class="btn btn-info" th:href="@{/customer/editar/{id}(id=${customer.id})}"><i class="fa fa-edit"></i></a>
-                                        <button class="btn btn-danger" th:onclick="'javascript:eliminarDepartamento(' + ${customer.id} + ')'" data-target='#deleteModal' data-toggle="modal"><i class="fa fa-trash"></i></button>
+                                        <a class="btn btn-info" th:href="@{/customer/{id}(id=${customer.id})}" data-toggle="modal" data-target="#updateCustomerModal"><i class="fa fa-edit"></i></a>
+                                        <button class="btn btn-danger" th:onclick="'javascript:deleteCustomer(' + ${customer.id} + ')'" data-target='#deleteCustomerModal' data-toggle="modal"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -85,50 +85,11 @@
 <div th:replace="base/base.html :: #logoutModal"></div>
 <!--end of modal-->
 <!--    Register Modal-->
-<div class="modal fade" id="registerCustomerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="text-gray-900 mb-12 title-modal">Registro de Clientes</h1>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div th:object="${customer}" th:remove="tag">
-                <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
-                    <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
-                </ul>
-            </div>
-            <form class="user form-register" th:action="@{/nuevo}" th:object="${customer}" method="POST">
-                <label class="form-group label-form">
-                    <label class="label-lform" for="name">Nombre Cliente : </label>
-                    <input type="text" name="name" id="name" th:field="*{name}" class="form-control form-control-user input-form" placeholder="Digite el nombre del cliente : " required th:errorclass="'form-control alert-danger'">
-                    <small class="form-text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
-                </label>
-                <label class="form-group label-form">
-                    <label class="label-lform">Apellido Cliente : </label>
-                    <input type="number" th:field="*{lastName}" class="form-control form-control-user input-form" placeholder="Digite el apellido : " required th:errorclass="'form-control alert-danger'">
-                    <small class="form-text text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></small>
-                </label>
-                <label class="form-group label-form">
-                    <label  class="label-lform">Email : </label>
-                    <input type="number" th:field="*{email}" class="form-control form-control-user input-form" placeholder="Digite el email : " required th:errorclass="'form-control alert-danger'">
-                    <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
-                </label>
-                <label class="form-group label-form">
-                    <label  class="label-lform">Fecha : </label>
-                    <input type="number" th:field="*{createAt}" class="form-control form-control-user input-form" placeholder="Digite el email : " required th:errorclass="'form-control alert-danger'">
-                    <small class="form-text text-danger" th:if="${#fields.hasErrors('createAt')}" th:errors="*{createAt}"></small>
-                </label>
-                <label class="form-group justify-content-around">
-                    <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-success">Guardar</button>
-                </label>
-            </form>
-        </div>
-    </div>
-</div>
+<div th:replace="customer/register.html :: #registerCustomerModal"> </div>
 <!--    End Register Modal-->
+<!--    Update Modal-->
+<div th:replace="customer/edit.html :: #updateCustomerModal"> </div>
+<!--    End Update Modal-->
 <!--scripts-->
 <div th:insert="base/base.html :: scripts-js"></div>
 <!--end of scripts-->

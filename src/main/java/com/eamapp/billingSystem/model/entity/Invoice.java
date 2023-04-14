@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,6 +29,11 @@ public class Invoice implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<ItemInvoice> itemInvoices;
+
+
 
     @PrePersist
     public void prePersist(){

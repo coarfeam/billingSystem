@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--    Update Modal-->
+<div class="modal fade" id="updateCustomerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="text-gray-900 mb-12 title-modal">Actualizar Cliente</h1>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <form class="user form-register" th:action="@{/customer/{id}(id=${customer.id})}" th:object="${customer}" method="POST">
+        <label class="form-group label-form">
+          <label class="label-lform" for="id">Nombre Cliente : </label>
+          <input type="number" name="id" id="id" th:field="*{id}" class="form-control form-control-user input-form" readonly>
+        </label>
+        <label class="form-group label-form">
+          <label class="label-lform">Nombre Cliente : </label>
+          <input type="text" name="name" th:field="*{name}" class="form-control form-control-user input-form" placeholder="Digite el nombre del cliente : " required>
+        </label>
+        <label class="form-group label-form">
+          <label class="label-lform">Apellido Cliente : </label>
+          <input type="text" th:field="*{lastName}" class="form-control form-control-user input-form" placeholder="Digite el apellido : " required>
+        </label>
+        <label class="form-group label-form">
+          <label  class="label-lform">Email : </label>
+          <input type="email" th:field="*{email}" class="form-control form-control-user input-form" placeholder="Digite el email : " required >
+        </label>
+        <label class="form-group label-form">
+          <label  class="label-lform">Fecha : </label>
+          <input type="date" th:field="*{createAt}" class="form-control form-control-user input-form" placeholder="Digite la fecha : ">
+        </label>
+        <label class="form-group justify-content-around">
+          <button class="btn btn-danger" type="button" data-dismiss="modal" onclick="resetForm()">Cancelar</button>
+          <button class="btn btn-success">Guardar</button>
+        </label>
+      </form>
+      <script>
+        function resetForm() {
+          document.getElementById("updateCustomerModal").reset();
+        }
+      </script>
+    </div>
+  </div>
+</div>
+<!--    End Update Modal-->
+
+
+</body>
+</html>
